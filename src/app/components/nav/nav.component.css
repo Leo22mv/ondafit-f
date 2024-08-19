@@ -1,0 +1,21 @@
+.login-icon {
+    filter: invert(50%);
+    transition: 0.2s all;
+}
+.login-icon:hover {
+    filter: invert();
+}
+.login-icon-active {
+    filter: invert();
+}
+ul a:hover {
+    color: white;
+    transition: 0.2s all;
+}
+.disabled {
+    filter: invert(25%);
+    pointer-events: none;
+}
+a:has(.disabled) {
+    pointer-events: none;
+}

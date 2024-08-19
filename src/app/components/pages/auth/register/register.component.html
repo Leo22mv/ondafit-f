@@ -1,0 +1,30 @@
+<h1>Registrarse</h1>
+<form>
+    <div class="form-floating mb-3">
+        <input [(ngModel)]="registerForm.email" type="email" class="form-control" id="floatingInput" placeholder="nombre@ejemplo.com" required name="floatingInput">
+        <label for="floatingInput">Dirección de correo electrónico</label>
+    </div>
+    <div class="form-floating">
+        <input [(ngModel)]="registerForm.password" type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" required name="floatingPassword">
+        <label for="floatingPassword">Contraseña</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input [(ngModel)]="registerForm.name" type="text" class="form-control" id="nameInput" placeholder="Nombre" name="nameInput">
+        <label for="nameInput">Nombre</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input [(ngModel)]="registerForm.surname" type="text" class="form-control" id="surnameInput" placeholder="Apellido" name="surnameInput">
+        <label for="surnameInput">Apellido</label>
+    </div>
+    <button (click)="handleRegisterButton()" id="registerButton" class="btn btn-dark btn-lg">Registrarse</button>
+</form>
+<div *ngIf="loading" class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div *ngIf="requiredInputError" class="alert alert-danger" role="alert">
+    Complete todos los campos para continuar
+</div>
+<div *ngIf="invalidUserError" class="alert alert-danger" role="alert">
+    Usuario existente
+</div>
+<p>Ya posee una cuenta? <a routerLink="/auth/login" id="login-link" class="login-link">Iniciar sesión</a></p>
