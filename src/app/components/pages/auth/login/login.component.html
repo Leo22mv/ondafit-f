@@ -17,7 +17,7 @@
     Complete todos los campos para continuar.
 </div>
 <div *ngIf="error" class="alert alert-danger" role="alert">
-    {{ error.error.error }}
+    {{ error.error.error || "Error en el servidor. Vuelve a intentarlo en unos minutos." }}
 </div>
 <div *ngIf="logged" class="alert alert-success" role="alert">
     Inicio de sesión exitoso.

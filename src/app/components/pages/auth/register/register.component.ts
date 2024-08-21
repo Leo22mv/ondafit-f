@@ -46,6 +46,12 @@ export class RegisterComponent implements OnInit {
       for (let link of navLinks) {
         link.classList.add("disabled")
       }
+      const inputsElements = document.getElementsByClassName("form-control");
+      const inputs = Array.from(inputsElements) as HTMLInputElement[];
+      for (let input of inputs) {
+        input.disabled = true;
+      }
+
       this.authService.register(this.registerForm).subscribe(res => {
         this.loading = false;
 
