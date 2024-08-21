@@ -59,9 +59,11 @@ export class LoginComponent implements OnInit {
         registerLink?.classList.remove("disabled-link");
         const navLinksElements = document.getElementsByClassName("nav-link");
         const navLinks = Array.from(navLinksElements);
-        for (let link of navLinks) {
-          link.classList.remove("disabled")
-        }
+        navLinks.forEach((link, index) => {
+          if (index != 2 && index != 3) {
+            link.classList.remove('disabled');
+          }
+        });
         const inputsElements = document.getElementsByClassName("form-control");
         const inputs = Array.from(inputsElements) as HTMLInputElement[];
         for (let input of inputs) {
