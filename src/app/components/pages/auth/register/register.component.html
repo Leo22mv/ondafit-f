@@ -24,7 +24,10 @@
 <div *ngIf="requiredInputError" class="alert alert-danger" role="alert">
     Complete todos los campos para continuar
 </div>
-<div *ngIf="invalidUserError" class="alert alert-danger" role="alert">
-    Usuario existente
+<div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error.error.error }}
 </div>
-<p>Ya posee una cuenta? <a routerLink="/auth/login" id="login-link" class="login-link">Iniciar sesión</a></p>
+<div *ngIf="registered" class="alert alert-success" role="alert">
+    Usuario registrado exitosamente. <a href="/auth/login">Iniciar sesión</a>
+</div>
+<p>Ya posee una cuenta? <a href="/auth/login" id="login-link" class="login-link">Iniciar sesión</a></p>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterForm } from 'src/app/models/register-form';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,16 +11,18 @@ export class RegisterComponent implements OnInit {
 
   registerForm: RegisterForm = {
     email: "",
-    password: "",
+    password: null,
     name: "",
-    surname: ""
+    surname: null,
+    phone: null
   };
 
   loading: boolean = false;
   requiredInputError: boolean = false;
-  invalidUserError: boolean = false;
+  error: any = null;
+  registered: boolean = true;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -27,11 +30,12 @@ export class RegisterComponent implements OnInit {
   handleRegisterButton() {
     this.loading = false;
     this.requiredInputError = false;
+    this.error = null;
+    this.registered = false;
     
     if (this.registerForm.email.length >= 1
-      && this.registerForm.password.length >= 1
-      && this.registerForm.name.length >= 1
-      && this.registerForm.surname.length >= 1) {
+      && this.registerForm.password
+      && this.registerForm.name.length >= 1) {
       this.loading = true;
       const registerButton = document.getElementById("registerButton");
       registerButton?.classList.add("disabled");
@@ -42,6 +46,45 @@ export class RegisterComponent implements OnInit {
       for (let link of navLinks) {
         link.classList.add("disabled")
       }
+      this.authService.register(this.registerForm).subscribe(res => {
+        this.loading = false;
+
+        const registerButton = document.getElementById("registerButton");
+        registerButton?.classList.remove("disabled");
+        const loginLink = document.getElementById("login-link");
+        loginLink?.classList.remove("disabled-link");
+        const navLinksElements = document.getElementsByClassName("nav-link");
+        const navLinks = Array.from(navLinksElements);
+        for (let link of navLinks) {
+          link.classList.remove("disabled")
+        }
+        const inputsElements = document.getElementsByClassName("form-control");
+        const inputs = Array.from(inputsElements) as HTMLInputElement[];
+        for (let input of inputs) {
+          input.disabled = false;
+        }
+
+        this.registered = true;
+      }, err => {
+        this.loading = false;
+
+        const registerButton = document.getElementById("registerButton");
+        registerButton?.classList.remove("disabled");
+        const loginLink = document.getElementById("login-link");
+        loginLink?.classList.remove("disabled-link");
+        const navLinksElements = document.getElementsByClassName("nav-link");
+        const navLinks = Array.from(navLinksElements);
+        for (let link of navLinks) {
+          link.classList.remove("disabled")
+        }
+        const inputsElements = document.getElementsByClassName("form-control");
+        const inputs = Array.from(inputsElements) as HTMLInputElement[];
+        for (let input of inputs) {
+          input.disabled = false;
+        }
+
+        this.error = err;
+      })
     } else {
       this.requiredInputError = true;
     }

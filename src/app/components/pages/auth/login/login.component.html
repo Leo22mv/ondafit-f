@@ -14,9 +14,12 @@
     <span class="visually-hidden">Loading...</span>
 </div>
 <div *ngIf="requiredInputError" class="alert alert-danger" role="alert">
-    Complete todos los campos para continuar
+    Complete todos los campos para continuar.
 </div>
-<div *ngIf="invalidUserError" class="alert alert-danger" role="alert">
-    Dirección de correo electrónico y/o contraseña incorrectos
+<div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error.error.error }}
 </div>
-<p>No posee una cuenta? <a routerLink="/auth/register" id="register-link" class="register-link">Registrarse</a></p>
+<div *ngIf="logged" class="alert alert-success" role="alert">
+    Inicio de sesión exitoso.
+</div>
+<p>No posee una cuenta? <a href="/auth/register" id="register-link" class="register-link">Registrarse</a></p>

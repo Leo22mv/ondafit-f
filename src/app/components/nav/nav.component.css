@@ -19,3 +19,6 @@ ul a:hover {
 a:has(.disabled) {
     pointer-events: none;
 }
+.navbar-brand {
+    cursor: default;
+}

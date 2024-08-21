@@ -15,3 +15,6 @@
     color: gray;
     text-decoration: none;
 }
+.alert, .alert a {
+    color: darkgreen;
+}
