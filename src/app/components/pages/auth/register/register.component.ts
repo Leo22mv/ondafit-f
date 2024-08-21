@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   loading: boolean = false;
   requiredInputError: boolean = false;
   error: any = null;
-  registered: boolean = true;
+  registered: boolean = false;
 
   constructor(private authService: AuthService) { }
 

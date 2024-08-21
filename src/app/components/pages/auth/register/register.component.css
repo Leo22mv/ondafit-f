@@ -15,6 +15,6 @@
     color: gray;
     text-decoration: none;
 }
-.alert, .alert a {
+.alert-success, .alert-success a {
     color: darkgreen;
 }
